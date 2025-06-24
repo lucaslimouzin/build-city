@@ -162,6 +162,4 @@ function createLighting() {
     const pointLight4 = new THREE.PointLight(0xffffff, 0.4, 600);
     pointLight4.position.set(300, 200, -300);
     scene.add(pointLight4);
-
-    console.log('🔆 Enhanced lighting configured');
 } 

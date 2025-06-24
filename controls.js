@@ -43,39 +43,31 @@ function onTouchMove(event) {
 
 // Common function to handle clicks/touches
 function handleInteraction(clientX, clientY, eventType = 'click') {
-    console.log(`🖱️ ${eventType} detected at position:`, clientX, clientY);
-    
     // Calculate normalized coordinates
     mouse.x = (clientX / window.innerWidth) * 2 - 1;
     mouse.y = -(clientY / window.innerHeight) * 2 + 1;
-    console.log(`📐 Normalized coordinates:`, mouse.x, mouse.y);
 
     // Update raycaster
     raycaster.setFromCamera(mouse, camera);
 
     // Intersection with cells
     const intersects = raycaster.intersectObjects(cases);
-    console.log(`🎯 Intersections found:`, intersects.length);
 
     if (intersects.length > 0) {
         const clickedObject = intersects[0].object;
         const { row, col } = clickedObject.userData;
-        console.log(`📍 Cell clicked: row=${row}, column=${col}`);
         
         if (selectedAsset) {
             // Check if cell already has an object
             if (placedObjects.has(clickedObject)) {
-                console.log(`🔄 Rotating existing object on cell`);
                 // Rotate existing object instead of replacing
                 rotateObjectOnCase(clickedObject);
             } else {
-                console.log(`🎨 Placing asset: ${selectedAsset}`);
                 // Place selected asset on empty cell
                 loadAndPlaceModel(selectedAsset, clickedObject);
             }
             clickedObject.userData.hoverPlane.visible = false;
         } else {
-            console.log(`🗑️ Delete mode activated`);
             // Delete mode
             removeObjectFromCase(clickedObject);
             clickedObject.userData.hoverPlane.visible = false;
@@ -83,8 +75,6 @@ function handleInteraction(clientX, clientY, eventType = 'click') {
                 selectedCases.delete(clickedObject);
             }
         }
-    } else {
-        console.log(`❌ No cell found at ${eventType}`);
     }
 }
 

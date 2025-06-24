@@ -29,14 +29,10 @@ function switchTab(tabName) {
     
     // Remember current tab
     currentTab = tabName;
-    
-    console.log(`🏷️ Tab ${tabName} activated`);
 }
 
 // Function to generate previews by category
 function generateCategoryPreviews() {
-    console.log('🖼️ Generating thumbnails by category...');
-    
     // Generate thumbnails for each tab
     const categories = ['buildings', 'vegetation', 'infrastructure', 'tools'];
     

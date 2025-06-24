@@ -2,8 +2,6 @@
 
 // Generate 3D thumbnails for buttons
 function generateAssetPreviews() {
-    console.log('🖼️ Generating asset thumbnails...');
-    
     // Use tab function if it exists
     if (typeof generateCategoryPreviews === 'function') {
         generateCategoryPreviews();
@@ -82,15 +80,11 @@ function initSharedPreviewRenderer() {
         });
         sharedPreviewRenderer.setSize(44, 44);
         sharedPreviewRenderer.setClearColor(CONFIG.COLORS.BACKGROUND, 1);
-        
-        console.log('🖼️ Shared preview renderer initialized');
     }
 }
 
 // Generate 3D thumbnail for a GLB model using shared renderer
 function generateModelPreview(assetName, targetCanvas) {
-    console.log(`🎨 Creating thumbnail for: ${assetName}`);
-    
     // Initialize shared renderer if needed
     initSharedPreviewRenderer();
     
@@ -115,7 +109,6 @@ function generateModelPreview(assetName, targetCanvas) {
     gltfLoader.load(
         `assets/GLB format/${assetName}`,
         (gltf) => {
-            console.log(`✅ Thumbnail loaded: ${assetName}`);
             const model = gltf.scene.clone();
             
             // Center and resize model for thumbnail
@@ -146,7 +139,6 @@ function generateModelPreview(assetName, targetCanvas) {
         },
         undefined,
         (error) => {
-            console.error(`❌ Thumbnail error ${assetName}:`, error);
             // Create default thumbnail
             createFallbackPreview(targetCanvas, assetName);
         }
@@ -206,7 +198,6 @@ function selectAsset(assetName) {
         if (targetBtn) {
             targetBtn.classList.add('selected');
         }
-        console.log(`Asset selected: ${assetName}`);
         
         // Handle tab switching if function exists
         if (typeof handleAssetTabSwitch === 'function') {
@@ -218,40 +209,31 @@ function selectAsset(assetName) {
         if (deleteBtn) {
             deleteBtn.classList.add('selected');
         }
-        console.log('Delete mode activated');
     }
 }
 
 // Load and place a GLB model
 function loadAndPlaceModel(assetName, caseObject) {
-    console.log(`Loading attempt: ${assetName}`);
-    
     if (loadedModels.has(assetName)) {
         // Model already cached, clone directly
-        console.log(`Cached model found: ${assetName}`);
         const originalModel = loadedModels.get(assetName);
         const clonedModel = originalModel.clone();
         placeModelOnCase(clonedModel, caseObject);
     } else {
         // Load model for the first time
         const assetPath = `assets/GLB format/${assetName}`;
-        console.log(`Loading from: ${assetPath}`);
         
         gltfLoader.load(
             assetPath,
             (gltf) => {
-                console.log(`✅ Model loaded successfully: ${assetName}`, gltf);
                 const model = gltf.scene;
                 loadedModels.set(assetName, model);
                 
                 const clonedModel = model.clone();
                 placeModelOnCase(clonedModel, caseObject);
             },
-            (progress) => {
-                console.log(`📦 Loading ${assetName}: ${Math.round(progress.loaded / progress.total * 100)}%`);
-            },
+            undefined,
             (error) => {
-                console.error(`❌ Loading error for ${assetName}:`, error);
                 createFallbackObject(caseObject);
             }
         );
@@ -261,14 +243,12 @@ function loadAndPlaceModel(assetName, caseObject) {
 // Place model on a cell
 function placeModelOnCase(model, caseObject) {
     const { x, z } = caseObject.userData;
-    console.log(`🎯 Placing model at position: x=${x}, z=${z}`);
     
     // Remove old object if it exists
     if (placedObjects.has(caseObject)) {
         const oldObject = placedObjects.get(caseObject);
         scene.remove(oldObject);
         placedObjects.delete(caseObject);
-        console.log(`🗑️ Old object removed`);
     }
     
     // Position the new model
@@ -287,14 +267,11 @@ function placeModelOnCase(model, caseObject) {
     // Add to scene and remember
     scene.add(model);
     placedObjects.set(caseObject, model);
-    
-    console.log(`✅ Model placed successfully on cell`);
 }
 
 // Create fallback object for debugging
 function createFallbackObject(caseObject) {
     const { x, z } = caseObject.userData;
-    console.log(`🔧 Creating fallback cube at: x=${x}, z=${z}`);
     
     const geometry = new THREE.BoxGeometry(CONFIG.CASE_SIZE * 0.8, 20, CONFIG.CASE_SIZE * 0.8);
     const material = new THREE.MeshLambertMaterial({ color: 0xff0000 });
@@ -317,7 +294,6 @@ function removeObjectFromCase(caseObject) {
         const object = placedObjects.get(caseObject);
         scene.remove(object);
         placedObjects.delete(caseObject);
-        console.log(`🗑️ Object removed from cell`);
     }
 }
 
@@ -325,9 +301,6 @@ function removeObjectFromCase(caseObject) {
 function rotateObjectOnCase(caseObject) {
     if (placedObjects.has(caseObject)) {
         const object = placedObjects.get(caseObject);
-        object.rotation.y += Math.PI / 2; // Rotate 90 degrees around Y axis
-        console.log(`🔄 Object rotated 90° on cell`);
-        return true;
+        object.rotation.y += Math.PI / 2;
     }
-    return false;
 } 
