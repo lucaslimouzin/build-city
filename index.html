@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D City Editor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Game Title -->
+    <div id="game-title">
+        <h1>3D City Editor</h1>
+    </div>
+
+    <!-- Interface de contrôle -->
+    <div id="controls">
+        <!-- Category tabs -->
+        <div class="tabs-container">
+            <button class="tab-btn active" onclick="switchTab('buildings')" data-tab="buildings">Buildings</button>
+            <button class="tab-btn" onclick="switchTab('vegetation')" data-tab="vegetation">Vegetation</button>
+            <button class="tab-btn" onclick="switchTab('infrastructure')" data-tab="infrastructure">Infrastructure</button>
+            <button class="tab-btn" onclick="switchTab('tools')" data-tab="tools">Tools</button>
+        </div>
+
+        <!-- Tab content -->
+        <div class="tab-content">
+            <!-- Buildings tab -->
+            <div class="tab-panel active" data-panel="buildings">
+                <div class="inventory-grid">
+                    <button class="asset-btn" onclick="selectAsset('building-type-a.glb')" data-asset="building-type-a.glb" title="Building A">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('building-type-b.glb')" data-asset="building-type-b.glb" title="Building B">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('building-type-c.glb')" data-asset="building-type-c.glb" title="Building C">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('building-type-d.glb')" data-asset="building-type-d.glb" title="Building D">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('building-type-e.glb')" data-asset="building-type-e.glb" title="Building E">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('building-type-f.glb')" data-asset="building-type-f.glb" title="Building F">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('building-type-g.glb')" data-asset="building-type-g.glb" title="Building G">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('building-type-h.glb')" data-asset="building-type-h.glb" title="Building H">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('building-type-i.glb')" data-asset="building-type-i.glb" title="Building I">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('building-type-j.glb')" data-asset="building-type-j.glb" title="Building J">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('building-type-k.glb')" data-asset="building-type-k.glb" title="Building K">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('building-type-l.glb')" data-asset="building-type-l.glb" title="Building L">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('building-type-m.glb')" data-asset="building-type-m.glb" title="Building M">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('building-type-n.glb')" data-asset="building-type-n.glb" title="Building N">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('building-type-o.glb')" data-asset="building-type-o.glb" title="Building O">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('building-type-p.glb')" data-asset="building-type-p.glb" title="Building P">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('building-type-q.glb')" data-asset="building-type-q.glb" title="Building Q">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('building-type-r.glb')" data-asset="building-type-r.glb" title="Building R">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('building-type-s.glb')" data-asset="building-type-s.glb" title="Building S">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('building-type-t.glb')" data-asset="building-type-t.glb" title="Building T">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('building-type-u.glb')" data-asset="building-type-u.glb" title="Building U">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Vegetation tab -->
+            <div class="tab-panel" data-panel="vegetation">
+                <div class="inventory-grid">
+                    <button class="asset-btn" onclick="selectAsset('tree-large.glb')" data-asset="tree-large.glb" title="Large tree">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('tree-small.glb')" data-asset="tree-small.glb" title="Small tree">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('planter.glb')" data-asset="planter.glb" title="Planter">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Infrastructure tab -->
+            <div class="tab-panel" data-panel="infrastructure">
+                <div class="inventory-grid">
+                    <button class="asset-btn" onclick="selectAsset('path-long.glb')" data-asset="path-long.glb" title="Long path">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('path-short.glb')" data-asset="path-short.glb" title="Short path">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('path-stones-long.glb')" data-asset="path-stones-long.glb" title="Long stone path">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('path-stones-short.glb')" data-asset="path-stones-short.glb" title="Short stone path">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('path-stones-messy.glb')" data-asset="path-stones-messy.glb" title="Messy stone path">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('fence.glb')" data-asset="fence.glb" title="Fence">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('fence-low.glb')" data-asset="fence-low.glb" title="Low fence">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('fence-1x2.glb')" data-asset="fence-1x2.glb" title="Fence 1x2">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('fence-1x3.glb')" data-asset="fence-1x3.glb" title="Fence 1x3">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('fence-1x4.glb')" data-asset="fence-1x4.glb" title="Fence 1x4">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('fence-2x2.glb')" data-asset="fence-2x2.glb" title="Fence 2x2">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('fence-2x3.glb')" data-asset="fence-2x3.glb" title="Fence 2x3">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('fence-3x2.glb')" data-asset="fence-3x2.glb" title="Fence 3x2">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('fence-3x3.glb')" data-asset="fence-3x3.glb" title="Fence 3x3">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('driveway-long.glb')" data-asset="driveway-long.glb" title="Long driveway">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                    <button class="asset-btn" onclick="selectAsset('driveway-short.glb')" data-asset="driveway-short.glb" title="Short driveway">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tools tab -->
+            <div class="tab-panel" data-panel="tools">
+                <div class="inventory-grid">
+                    <button class="asset-btn" onclick="selectAsset(null)" title="Clear cell">
+                        <canvas class="asset-preview" width="44" height="44"></canvas>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Credits -->
+    <div id="credits">
+        <p>3D Assets by <a href="https://kenney.nl/" target="_blank" rel="noopener">Kenney.nl</a></p>
+    </div>
+
+    <!-- Chargement des bibliothèques Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
+    <!-- Chargement des modules de l'application -->
+    <script src="config.js"></script>
+    <script src="board.js"></script>
+    <script src="assets.js"></script>
+    <script src="controls.js"></script>
+    <script src="tabs.js"></script>
+    <script src="app.js"></script>
+</body>
+</html> 
